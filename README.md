@@ -4,7 +4,9 @@ Regex is short for regular expression, a regex is a string of text that allows y
 
 ## Summary
 
-We will be walking through the following regex, explaining what each component does.
+I will be walking through the following regex, explaining what each component does. I will be covering and breaking down the components of a regular expression used to match Hex Values. Hex values are commonly used for color using the hexadecimal color code format. In the web we can use hex triplet (hex color code) to represent colors on a web page. For the hex color code, there are two formats, a standard hex triplet and a shorthand hex format, where both formats start with a #.
+
+/^#?([a-f0-9]{6}|[a-f0-9]{3})$/
 
 ## Table of Contents
 
@@ -74,7 +76,6 @@ A character class matches only a single character. gr[ae]y does not match graay,
 You can use a hyphen inside a character class to specify a range of characters. [0-9] matches a single digit between 0 and 9. You can use more than one range. [0-9a-fA-F] matches a single hexadecimal digit, case insensitively. You can combine ranges and single characters. [0-9a-fxA-FX] matches a hexadecimal digit or the letter X. Again, the order of the characters and the ranges does not matter.
 
 Character classes are one of the most commonly used features of regular expressions. You can find a word, even if it is misspelled, such as sep[ae]r[ae]te or li[cs]en[cs]e. You can find an identifier in a programming language with [A-Za-z_][A-Za-z_0-9]*. You can find a C-style hexadecimal number with 0[xX][A-Fa-f0-9]+.
-
 ### The OR Operator
 
 Alternation is the term in regular expression that is actually a simple “OR”. In a regular expression it is denoted with a vertical line character |. For instance, we need to find programming languages: HTML, PHP, Java or JavaScript.
@@ -97,7 +98,6 @@ To apply alternation to a chosen part of the pattern, we can enclose it in paren
 
     I love HTML|CSS matches I love HTML or CSS.
     I love (HTML|CSS) matches I love HTML or I love CSS.
-
 ### Flags
 
 Regular expressions have optional flags that allow for functionality like global searching and case-insensitive searching. These flags can be used separately or together in any order, and are included as part of the regular expression.
