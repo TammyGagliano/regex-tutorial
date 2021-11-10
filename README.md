@@ -66,8 +66,46 @@ Most special characters lose their special status and become literals within bra
 
 The backslash character, \, retains its meaning in bracket expressions, permitting the usage of the special escape sequences: such as \n, \t, \w, \d, etc.
 ### Character Classes
+
+With a “character class”, also called “character set”, you can tell the regex engine to match only one out of several characters. Simply place the characters you want to match between square brackets. If you want to match an a or an e, use [ae]. You could use this in gr[ae]y to match either gray or grey. Very useful if you do not know whether the document you are searching through is written in American or British English.
+
+A character class matches only a single character. gr[ae]y does not match graay, graey or any such thing. The order of the characters inside a character class does not matter. The results are identical.
+
+You can use a hyphen inside a character class to specify a range of characters. [0-9] matches a single digit between 0 and 9. You can use more than one range. [0-9a-fA-F] matches a single hexadecimal digit, case insensitively. You can combine ranges and single characters. [0-9a-fxA-FX] matches a hexadecimal digit or the letter X. Again, the order of the characters and the ranges does not matter.
+
+Character classes are one of the most commonly used features of regular expressions. You can find a word, even if it is misspelled, such as sep[ae]r[ae]te or li[cs]en[cs]e. You can find an identifier in a programming language with [A-Za-z_][A-Za-z_0-9]*. You can find a C-style hexadecimal number with 0[xX][A-Fa-f0-9]+.
+
 ### The OR Operator
+
+
+
 ### Flags
+
+Regular expressions have optional flags that allow for functionality like global searching and case-insensitive searching. These flags can be used separately or together in any order, and are included as part of the regular expression.
+
+To include a flag with the regular expression, use this syntax:
+
+var re = /pattern/flags;
+or
+var re = new RegExp('pattern', 'flags');
+
+Note that the flags are an integral part of a regular expression. They cannot be added or removed later.
+
+For example, re = /\w+\s/g creates a regular expression that looks for one or more characters followed by a space, and it looks for this combination throughout the string.
+
+    var re = /\w+\s/g;
+    var str = 'fee fi fo fum';
+    var myArray = str.match(re);
+    console.log(myArray);
+
+You could replace the line:
+
+    var re = /\w+\s/g;
+    with:
+    var re = new RegExp('\\w+\\s', 'g');
+    and get the same result.
+
+The m flag is used to specify that a multiline input string should be treated as multiple lines. If the m flag is used, ^ and $ match at the start or end of any line within the input string instead of the start or end of the entire string.
 ### Character Escapes
 
 These are special sequences representing commonly used character sets:
